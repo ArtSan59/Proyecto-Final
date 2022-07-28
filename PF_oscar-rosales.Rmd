@@ -1,0 +1,80 @@
+---
+title: 'Leyes y Armas: Un estudio empírico de la relación entre los tiroteos masivos, la proporción de habitantes armados y los controles legales a las armas'
+author: "Oscar Rosales Corzo, David Alvarez, Arturo Sanánez, Santiago Bonadies "
+date: '2022-07-26'
+output: 
+  html_document:
+    theme: cerulean
+    toc: TRUE
+    toc_float: TRUE
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Preguntas de la Investgación
+
+- ¿Cuánto impacta el control de armas en los tiroteos masivos?
+- ¿Cuánto impacta la proporción de habitantes con armas de fuego en los tiroteos masivos?
+
+
+# Justificación
+
+En la lista de asuntos divisivos y politizados en Estados Unidos nos encontramos con temas variados como lo son: El Aborto, Las Vacunas (en el contexto de la crisis del COVID-19), los temas relacionados con la comunidad LGBT, entre muchos otros. De todos estos, el tema del control de armas es uno que llama la atención por varios motivos.
+
+ Con lo que, se hace verdaderamente alarmante los niveles de violencia que atraviesa el país, ya que al comparar a Estados Unidos con otras naciones industrializadas es fácil darse cuenta de que hay un problema que atender debido a que “las muertes relacionadas con armas son altas en países como El Salvador, Guatemala y Colombia, donde las pandillas y el tráfico de drogas son significativos. Entre economías desarrolladas, nadie tiene tantas muertes violentas con armas como EE.UU.” (Sam y Rupp, 2022, p.3). Por otro lado, otro punto que llama la atención es que “Estados Unidos tiene más armas per cápita que cualquier otro país del mundo” (Frank Newport, 2021, p.13). Todo lo anterior, mezclado con una profunda frustración y deseo que se implementen acciones, lo cual se ve reflejado en que “las encuestas consistentemente muestran que los estadounidenses creen que los controles de armas actuales no son suficientemente restrictivos, y soluciones básicas como revisión de antecedentes tienen apoyo de demócratas como republicanos” (Zara, 2022, p.3). Con lo cual, es inevitable cuestionarse qué factores juegan en que haya situaciones como tales como los sucesos del “14 de diciembre de 2012, seis adultos y 20 niños murieron por los disparos que hizo Adam Lanza, quien antes había matado a su madre, Nancy Lanza, en su casa” (CNN, 2022, p.1).
+ 
+En consecuencia, una revisión de los hechos desde la perspectiva que ofrecen las herramientas estadísticas se hace vital, para lograr comprender mejor qué sucede y por donde pudieran ubicarse posibles soluciones. Se espera que este trabajo, plantenado como intento de replica de "State gun laws, gun ownership, and mass shootings in the US: 
+cross sectional time series" desarrollado por Reeping y compañia, llegue a sano puerto y logremos ser mejores economistas de lo que eramos antes de comenzar.
+
+
+# Descripción de los datos
+
+Para resolver estas preguntas planeamos usar un set de datos compuestos principalmente por:
+
+- Número de Tiroteos Masivos
+- Año
+- Ubicación de los Tiroteos (Estado)
+- Número de Muertos
+- Número de Heridos
+- Derecho Al Porte de Armas (Índice que pondera la presencia de diferentes regulaciones a las armas por estado)
+- Proporción de Habitantes Armados (Medido como porcentaje de suicidios cometidos con armas de fuego)
+- Ingreso promedio de los hogares
+- Número de Habitantes por estado
+- Porcentaje de pobreza
+- Porcentaje de personas graduadas de secundaria
+- Porcentaje de hogares liderados por mujeres
+- Porcentaje de desempleo
+- Índices de encarcelamiento
+ 
+Estos datos pueden ser colectados principalmente de 5 fuentes, las cuales son: 
+
+- The Gun Violence Archive
+- The Centers for Disease Control and Prevention’s online database, WONDER
+- The United States Census Bureau
+- The Bureau of Justice Statistics
+- Freedom in the 50 States Report made by Cato Institute
+
+Vale la pena comentar, que proporción de habitantes armados no es algo de lo cual se lleven los duficientes datos, por lo que a modo de proxy, se ha determinado que usar porcentajes de suicidio cometidos con armas de fuego puede ser bastante efectivo (Reeping et al, 2019, p.2)
+
+
+# Metodología
+
+Nos planteamos realizar un panel data, el cual tendrá como dimensión cross sectional estados y años como la dimensión de línea de tiempo. Esto, nos permitirá entender la relación que hay entre la regulación de las armas y los tiroteos masivos, a través de los diferentes estados y los diferentes años.
+
+# Limitaciones
+
+Reconocemos que este puede que sea un trabajo que extienda un poco mas allá de nuestros recursos temporales. En dicho caso, puede que entregemos una regresión más simple, que se desprenda de variables que en este momento le estran agregando robustez al modelo y que nos limitemos a estudiar solo 1 año de data.
+
+# Bibliografía
+
+CNN. (2022, 25 mayo). Tiroteo en la escuela Sandy Hook: así fue la masacre que estremeció a EE.UU. en 2012. https://cnnespanol.cnn.com/2022/05/24/sandy-hook-tiroteo-escuela-masacre-2012-trax/
+
+Newport, B. F. (2021, 20 noviembre). American Public Opinion and Gun Violence. Gallup.Com. https://news.gallup.com/opinion/polling-matters/343649/american-public-opinion-gun-violence.aspx
+
+Reeping, P. R., Cerdá, M. C., Kalesan, B. K., Wiebe, D. W., Galea, S. G., & Branas, C. B. (2019, enero). State gun laws, gun ownership, and mass shootings in the US: cross sectional time series. THE BJM.
+
+Sam, C., & Rupp, L. (2022, 26 mayo). Gun Violence in the US Far Exceeds Levels in Other Rich Nations. https://www.bloomberg.com/. https://www.bloomberg.com/graphics/2022-us-gun-violence-world-comparison/
+
+Zara, C. (2022, 25 mayo). The polling is clear: Americans want background checks. Fast Company. https://www.fastcompany.com/90755595/the-polling-is-clear-americans-want-background-checks
