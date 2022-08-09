@@ -1,6 +1,6 @@
-getwd()
+setwd("C:/Users/hp/OneDrive/Economia/8vo Semestre/Electiva - Introduccion a la Ciencia de Datos/Prof. Ricardo Andres Benzecry Mancin/Semestre Abr-Ago 2022/Proyecto Final/Proyecto-Final/Data")
 
-setwd("C:/Users/Oscar Rosales/Desktop/Oscar/UCAB/8vo Semestre/Data Science/Project Mass Murders/Data")
+getwd()
 
 #Cargar librearias 
 

@@ -1,12 +1,15 @@
 ---
-title: 'Leyes y Armas: Un estudio empírico de la relación entre los tiroteos masivos, la proporción de habitantes armados y los controles legales a las armas'
-author: "Oscar Rosales Corzo, David Alvarez, Arturo Sanánez, Santiago Bonadies "
-date: '2022-07-26'
-output: 
+title: 'Leyes y Armas: Un estudio empírico de la relación entre los tiroteos masivos,
+  la proporción de habitantes armados y los controles legales a las armas'
+author: 'Oscar Rosales Corzo, David Alvarez, Arturo Sanánez, Santiago Bonadies '
+date: "2022-07-26"
+output:
   html_document:
     theme: cerulean
-    toc: TRUE
-    toc_float: TRUE
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
 ---
 
 ```{r setup, include=FALSE}

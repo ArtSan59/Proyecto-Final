@@ -1,0 +1,1276 @@
+---
+title: "Leyes y Armas: Un estudio empírico de la relación entre los tiroteos masivos, la proporción de habitantes armados y los controles legales a las armas"
+author: "Oscar Rosales Corzo, David Alvarez, Arturo Sananez, Santiago Bonadies"
+date: '2022-07-15'
+output: 
+  html_document:
+    theme: cerulean
+    toc: TRUE
+    toc_float: TRUE
+---
+
+# Introducción
+
+## Descripción del Tema a Abordar
+
+En los Estados Unidos existen diversos tópicos extremadamente polémicos, entre ellos la desigualdad, abortos, etc; pero uno que siempre hace su aparición en los titulares de noticias son los tiroteos masivos. Estos han sido de suma relevancia en la última decada, al ser una nueva forma de terrorismo que azota a los americanos. Normalmente son llevados a cabo por “Lobos solitarios”, protagonizando escenas terribles. 	Según el Wallstreet Journal han habido más de 300 tiroteos masivos, solo durante el 2022, en los Estados Unidos. Y como bien ellos comentan, aparentemente han aumentado en los últimos años. Lo que ha traído consigo, pesé a que ya existía, nuevos intentos y esfuerzos por ampliar la regulación del porté de armas al rededor del país. El siguiente trabajo pretende explorar la relación existente entre este terrible fenómeno, y dos variables muy interesantes en este tema, que son: el porte de armas en los distintos estados, y la rígidez de las leyes de acceso a armas por estado. 
+Con la intención de empezar profundizar en el tema en sí, se plantea a continuación la definición dada por el Gun Violence Archive (GVA), una organización sin fines de lucro que cataloga cada incidente de violencia armada en los Estados Unidos, sobre tiroteos masivos. La GVA define como “Tiroteo Masivo” a aquellos eventos en los cuales hay “un mínimo de 4 victimas disparadas, ya sea heridas o muertas, sin incluir al pistolero quien pudo haber resultado muerto o herido en el incidente.”(Gun Violence Archive, p.1). Así, con este concepto como base, se procederá a efectuar una serie de análisis que  permitan indagar más sobre la interacción de estas variables.
+
+
+## Motivación
+
+La inspiración de este trabajo es buscar brindar una visión más clara, libre de sesgos sobre este terrible problema que plaga los Estados Unidos en este momento. Así, mediante el uso de las herramientas que provee la estadística y el uso de visualizaciones, se podrá aclarar si realmente ciertos factores en terminos de leyes y políticas, tienen una verdadera consecuencia en estos eventos. Además, de revisar la relación con otras variables estructurales.
+
+## Justificación
+
+En la lista de asuntos divisivos y politizados en Estados Unidos se encuentran temas variados como lo son: El aborto, las vacunas (en el contexto de la crisis del COVID-19), tópicos relacionados a la identidad sexual y género, entre muchos otros. De todos estos, el tema del control de armas es uno que más llama la atención por varios motivos. Entre ellos se encuentra lo muy debatido que ha sido el tema del porté de armas y la participación de instituciones como la “National Rifle Association”. 
+
+Parte de esto, es lo verdaderamente alarmante  que son los niveles de violencia que atraviesa ese país. Ya que al comparar a los Estados Unidos, con otras naciones industrializadas, hay una amplia diferencia en los números de muertes por consecuencia de este tipo de eventos; haciendo resaltar la existencia de un verdadero outlier en cuanto al resto del mundo. De hecho Sam y Rupp(2022), establecen sobre esto que: “las muertes relacionadas con armas son altas en países como El Salvador, Guatemala y Colombia, donde las pandillas y el tráfico de drogas son significativos. Entre economías desarrolladas, nadie tiene tantas muertes violentas con armas como EE.UU.” (p.3).  Lo que además tiene una obvia relación con otro punto clave en este tópico , el cuál es que: “Estados Unidos tiene más armas per cápita que cualquier otro país del mundo” (Frank Newport, 2021, p.13). Lo que se puede comparar con países como Suiza, que tienen muchas armas entre sus habitantes, pero no tiroteos. 
+
+Todo lo que, en conjunto con mucho dolor, frustración y miedo, ha llevado a que la gente empiece a solicitar y pedir nuevas soluciones. Como bien esta descrito aquí: “las encuestas consistentemente muestran que los estadounidenses creen que los controles de armas actuales no son suficientemente restrictivos, y soluciones básicas como revisión de antecedentes tienen apoyo de demócratas como republicanos” (Zara, 2022, p.3). Lo que lleva a cuestionar cuales son los factores que juegan un papel real en que ocurran eventos como los muchos ocurridos, entre los que se puede describir el siguiente: “14 de diciembre de 2012, seis adultos y 20 niños murieron por los disparos que hizo Adam Lanza, quien antes había matado a su madre, Nancy Lanza, en su casa” (CNN, 2022, p.1).
+ 
+## Interrogantes a Evaluar
+
+Este es un trabajo que pretende ser una replica del paper “State gun laws, gun ownership, and mass shootings in the US: cross sectional time series” desarrollado por Reeping y compañia. Con lo que se plantean interrograntes similares a las que se utilizaron en ese mismo trabajo, las cuales son:
+
+- ¿Cuál es la relación que hay entre las leyes de posesión de armas en los diferentes Estados de Estados Unidos y la cantidad de Tiroteos Masivos?
+
+-¿Cuál es la relación que hay entre la proporción de habitantes con armas de fuego y los Tiroteos Masivos?
+
+# Metodología 
+
+## Descrición de los Datos Utilizados
+
+Para resolver estas preguntas planeamos usar un cojutnos de datos compuestos principalmente por:
+- Número de Tiroteos Masivos
+- Año
+- Ubicación de los Tiroteos (Estado)
+- Número de Muertos
+- Número de Heridos
+-Derecho al Porte de Armas (Índice que mide que coste directo que tienen las leyes de control de armas sobre los dueños de armas y negocios relacionados con las armas)
+- Proporción de Habitantes Armados (Medido como porcentaje de suicidios cometidos con armas de fuego)
+- Mediana de ingresos de los hogares
+- Porcentaje de pobreza
+- Porcentaje de desempleo
+
+Estos datos pueden ser colectados principalmente de 4 fuentes, las cuales son:
+
+- The Gun Violence Archive
+- The Centers for Disease Control and 
+- Prevention’s online database, WONDER
+- The United States Census Bureau
+- Freedom in the 50 States Report made by Cato Institute
+
+Cabe destacar, que se usó la proporción de suicidios con armas de fuego ya que, como bien establecen Cerqueira, Coelho, Fernandes y Pinto(2018), esta variable es la única que se correlaciona correctamente con el porcentaje de hogares que tienen, al menos un arma, del General Social Survey. Lo que también evidencian los trabajos de Killias (1993) y Briggs y Tabarrok (2014). Además esto se ve reafirmado porque la data ya está agrupada a nivel municipal (Ídem, p.2). Es importante aclarar, que esta data debe ser tomada solo de muestras grandes, ya que son eventos muy particulares, además de que varían mucho entre municipios; haciendo la inferencia estadística para esta variable específica muy compleja. 
+ Así mismo, el periodo de tiempo el cual analizará el modelo será durante 2014-2019. Sin embargo, puede que algunas gráficas en el análisis exploratorio usen data que pueda abarcar hasta el 2021, esto con el objetivo de entender un poco más la realidad de los datos.
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+
+
+```{r , include=FALSE}
+
+setwd("C:/Users/hp/OneDrive/Economia/8vo Semestre/Electiva - Introduccion a la Ciencia de Datos/Prof. Ricardo Andres Benzecry Mancin/Semestre Abr-Ago 2022/Proyecto Final/Proyecto-Final/Data")
+
+library(usmap)
+library(readr)
+library(plyr)
+library(tidyverse)
+library(dplyr)
+library(lubridate)
+library(maps)
+library(ggplot2)
+library(scales)
+library(forcats)
+library(stargazer)
+library(knitr)
+library(here)
+library(ggthemes)
+library(readxl)
+library(stringi)
+library(stringr)
+library(plm)
+
+
+
+```
+
+```{r, include=FALSE}
+
+setwd("C:/Users/hp/OneDrive/Economia/8vo Semestre/Electiva - Introduccion a la Ciencia de Datos/Prof. Ricardo Andres Benzecry Mancin/Semestre Abr-Ago 2022/Proyecto Final/Proyecto-Final/Data")
+
+# Como se que voy a trabajar con data hasta el desde el 2014 al 2019,
+# procedo a desprenderme de la data fuera de ese periodo temporal
+
+# Creo un vector de anos validos
+
+anos_validos <- 2014:2019
+
+# lo vuelvo character porque asi estan los datos en gun_rights
+
+anos_validos <- as.character(anos_validos) 
+
+
+# Lo anterior me servira mas tarde
+
+# Cargar todos los archivos de Gun Violence Archive de un solo golpe,
+# toda la data estara en all_gva.
+
+all_files <- list.files()
+all_files
+
+all_files <- all_files[all_files != "Subdata"]
+
+all_gva <- ldply(all_files, read_csv)
+all_gva
+
+#Cambio los nombres de las columnas a unos que se me haran mas facil trabajar
+
+colnames(all_gva) <- c("Incident_ID", "Incident_Date", "State", "City/County",
+                       "Address", "Killed", "Injured","Operations")
+
+#Un vistazo.
+#View(all_gva)
+#str(all_gva)
+#names(all_gva)
+
+#Eliminar unas filas que que estorban.
+
+all_gva <- all_gva %>% 
+  filter(`Incident_ID` != "Incident ID") 
+
+#View(all_gva)
+
+#Convertir esto la culumna que tiene las fehcas a una fecha de verdad, ya que
+#antes de los siguientes pasos es un character.
+
+all_gva$`Incident_Date` <- as.Date(all_gva$`Incident_Date`,
+                                   format = "%B %d,%Y")
+
+
+#Creando las columnas Year y Month
+all_gva <- all_gva %>% 
+  mutate(Year = year(all_gva$`Incident_Date`),
+         Month = month(all_gva$`Incident_Date`))
+
+#Creando la columna Year_Month
+all_gva$Year_Month <- paste(all_gva$Year, all_gva$Month, sep = "-")
+#all_gva$Year_Month <- as.Date(all_gva$Year_Month,
+#                              format = "%Y-%m")        
+
+
+#View(all_gva)
+#str(all_gva)
+#Reorganizando las columnas y quitamos el aC1o 2022 porque es
+#un ano incompleto
+
+all_gva <- all_gva %>%
+  select(Incident_ID, Incident_Date, Year_Month, Year, Month,State,
+         `City/County`, Killed, Injured) %>% 
+  filter(Year != 2022)
+
+#Organizamos alfabeticamente
+
+all_gva <- all_gva[order(all_gva$State),]
+
+#Voy a usar los datos que vienen de la tabla statepop, para lo cual
+#procedo a hacer unas modificaciones que me permitiran trabajar comodo
+
+colnames(statepop) <- c("fips", "abbr", "State", "Pop_2015")
+
+#Hago un leftjoin para obtener la data que necesito
+
+all_gva <-  left_join(all_gva, statepop , by = "State")
+
+
+#Realizar una estadisticas descriptivas initiales
+#Me gusta bastante usar stargazer, creo que tiene un nombre muy poetico.
+#Siempre me imagino que es como mirar a la profundidad de estrellas
+#y ver que hay, peroen lugar de estrella es la data.
+
+stargazer(all_gva, type = "text")
+
+#Apartir de aqui deberian poder hacerse los graficos ya que la data esta limpia
+
+
+
+#View(all_gva)
+
+# Falta agregar unos labels a los datos mas importantes y quitar
+# de los States a Disctric of Columbia porque no todos mis otras fuentes
+# de datos tienen District of Columbia 
+
+all_gva_summarised <- all_gva %>%
+  group_by(Year, State, abbr, fips ) %>% 
+  filter(State != "District of Columbia") %>% 
+  filter(Year %in%  anos_validos) %>% 
+  summarise(Incident_Count = length(Incident_ID)) %>% 
+  ungroup() %>% 
+  mutate(Year = as.character(Year))
+
+
+
+
+# Aqui comienzo a cargar y limpiar mis datos de gun rights
+
+# Cargado
+
+
+gun_rights <- read_excel("Subdata/gun_rights.xlsx", 
+                         sheet = "Personal")
+View(gun_rights)
+
+# Me percato del nombre de las columnas
+
+colnames(gun_rights)
+
+# Me desprendo de columnas  filas que me estorban
+
+gun_rights <- gun_rights %>% 
+  filter(! ...1 %in% c("Mean", "Constitutional weight?", "St. dev."),
+          ...4 != "standardized") %>% 
+  select( ...1, ...2, `Gun Rights`)
+
+# Cambio las columnas a un nombre mas manejable
+
+colnames(gun_rights) <- c("State", "Year", "Gun_Rights")
+
+# Hago vistazos a la data        
+         
+#View(gun_rights)
+
+#str(gun_rights)
+
+# Enmarco la data en los a;os para los que tengo data
+
+gun_rights <- gun_rights %>% 
+  filter(Year %in% anos_validos)
+
+#View(gun_rights)
+
+
+# Cargo los datos de median household income
+
+household_income <- read_excel("Subdata/median_household_income.xls", 
+                                      skip = 2)
+View(household_income)
+
+# Quito columnas y filas que estorban. Ademas, hago la data longer
+
+household_income <- household_income %>% 
+  filter(State != c("1", "United States")) %>% 
+  select(State ,anos_validos) %>% 
+  pivot_longer( cols = anos_validos,
+                names_to = "Year",
+                values_to = "Median_Household_Income")
+
+# Vistazo a la data
+
+# View(household_income)
+
+
+# Cargar y limpiar data de incarceration. El primero modelo que voy a 
+# hacer no va a tomar en cuenta esta variable porque solo conseguimos data
+# para 2014-2016, siendo nuestro timeframe 2014-2019
+
+
+incarceration <- read_csv("Subdata/incarceration.csv")
+View(incarceration)
+
+# Agarro las columnas que me sirven
+
+incarceration <- incarceration %>% 
+  select(jurisdiction, year, prisoner_count) %>% 
+  filter(year %in% anos_validos,
+         jurisdiction != "FEDERAL")
+
+# Cambio los nombres de las colunmnas a unos que me sean utiles
+View(incarceration)
+
+colnames(incarceration) <- c("State", "Year", "Prisoners_Count")
+
+incarceration$State <- stri_trans_totitle(incarceration$State)
+
+
+# Cargar porcentaje de poblacion pobre
+
+poverty <- read_excel("Subdata/poverty.xlsx")
+
+# Year la vuelvo character
+
+poverty$Year <- as.character(poverty$Year)
+
+
+# Cargar Unemplayment
+
+unemployment <- read_excel("Subdata/unemployment.xlsx")
+View(unemployment)
+
+
+# Year la vuelvo character 
+
+unemployment$Year <- as.character(unemployment$Year)
+
+
+# Cargo data de la poblacion de USA
+
+population <- read_csv("Subdata/usa_state_population.csv", 
+                                 skip = 1)
+View(population)
+
+
+
+# Realizo esta limpieza de la tabla population, no se si es de buenas practicas
+# limpiar tanto de un solo golpe
+
+
+
+
+population <- population %>% 
+  separate( "Estimate Date", 
+          into = c("Year", NA),
+          sep = ' ') %>% 
+  filter(id != "0100000US") %>% 
+  select(- id) 
+  
+# Despues de muchas hora, hago lo siguiente para que me funcione el 
+# formato de la fecha, las fechas siempre se me hacen mas dificil
+# de lo esperado.
+
+# Me desprendo de todo lo que no sea el ano, total, solo voy a usar ano
+
+population<- population %>% 
+  separate(Year,
+           into = c(NA, NA, "Year"),
+           sep = "/") %>% 
+  filter( Year %in% anos_validos)
+
+colnames(population) <- c("State", "Year", "Population")
+                      
+  
+View(population)
+
+# Cargo data de Gun Ownership, usamos como proxy rate de suicidios 
+# cometidos con armas de fuego
+
+# Describri que puedes quitar las columnas que no quieres desde que
+# cargas la data
+
+suicide_firearm <- read_excel("Subdata/suicide.xlsx", 
+                      col_types = c("skip", "text", "skip", 
+                                    "text", "skip", "text", "skip", "text", 
+                                    "text", "numeric", "skip", "text"))
+
+# Agrupo la data 
+
+suicide_firearm <-suicide_firearm %>% 
+  group_by(Year , State) %>% 
+  summarise(Deaths = sum (Deaths)) %>% 
+  ungroup() %>% 
+  filter(Year %in% anos_validos)
+
+View(suicide_firearm)
+
+# Cambio el nombre de columnas para hacerlo mas entendible
+
+colnames(suicide_firearm) <- c("Year", "State", "Firearm_Suicide")
+
+# La data de suicidios totales esta en el siguiente archivo. Lo anterior era solo
+# los suicidios cometidos con armas de fuego.
+
+
+total_suicides <- read_csv("Subdata/total_suicides.csv", 
+                           col_types = cols(YEAR = col_character(), 
+                                            RATE = col_skip(), URL = col_skip()))
+View(total_suicides)
+
+# Cambio nombre de columnas
+
+colnames(total_suicides) <- c("Year","abbr", "Suicides")
+
+# Junto tablas para poder cambiar eventualmente la abreviacion de los Estados
+# por el Estado
+
+total_suicides <- left_join(total_suicides, statepop, by = "abbr")
+
+# Me desprendo de columnas que no sirven y le pego la columna de 
+# suicidios por firearm
+
+total_suicides <- total_suicides %>% 
+  select(! c(Pop_2015, fips, abbr)) %>% 
+  select( Year, State, Suicides) %>% 
+  filter( Year != "2020")
+
+
+
+
+total_suicides <- left_join(total_suicides ,suicide_firearm,
+                            by = c("Year", "State")) %>%
+  mutate(firearm_Rate = Firearm_Suicide/Suicides*100) %>% 
+  select(! c("Suicides", "Firearm_Suicide"))
+  
+
+# Vamos a dejar solo los anos que nos importan
+
+total_suicides <- total_suicides %>% 
+  filter(Year %in% anos_validos)
+
+
+
+
+
+# Comienzo a pegar todas las tablas en una sola gran tabla
+
+consolidado <- left_join(all_gva_summarised,gun_rights,
+                              by = c("Year", "State"))
+
+consolidado <- left_join(consolidado, household_income, 
+                              by = c("Year", "State"))
+
+consolidado <- left_join(consolidado, poverty, 
+                              by = c("Year", "State"))
+
+consolidado <- left_join(consolidado, total_suicides, 
+                              by = c("Year", "State"))
+
+consolidado <- left_join(consolidado, unemployment, 
+                              by = c("Year", "State"))
+
+consolidado <-  left_join(consolidado, population, 
+                               by = c("Year", "State"))
+
+
+
+# Cambios esteticos en Poverty y Unemployment
+
+
+consolidado <- consolidado %>% 
+  mutate(Over_All_Poverty = Over_All_Poverty*100,
+         Unemployment_Rate = Unemployment_Rate*100)
+
+
+
+
+```
+
+
+### Tabla Descriptiva de los Datos
+
+```{r, include=FALSE}
+
+setwd("C:/Users/hp/OneDrive/Economia/8vo Semestre/Electiva - Introduccion a la Ciencia de Datos/Prof. Ricardo Andres Benzecry Mancin/Semestre Abr-Ago 2022/Proyecto Final/Proyecto-Final/Data")
+
+#Cargar librearias 
+
+
+library(usmap)
+library(readr)
+library(plyr)
+library(tidyverse)
+library(dplyr)
+library(lubridate)
+library(maps)
+library(ggplot2)
+library(scales)
+library(forcats)
+library(stargazer)
+library(knitr)
+library(here)
+library(ggthemes)
+library(readxl)
+library(stringi)
+library(stringr)
+library(plm)
+
+
+# Como se que voy a trabajar con data hasta el desde el 2014 al 2019,
+# procedo a desprenderme de la data fuera de ese periodo temporal
+
+# Creo un vector de anos validos
+
+anos_validos <- 2014:2019
+
+# lo vuelvo character porque asi estan los datos en gun_rights
+
+anos_validos <- as.character(anos_validos) 
+
+
+# Lo anterior me servira mas tarde
+
+# Cargar todos los archivos de Gun Violence Archive de un solo golpe,
+# toda la data estara en all_gva.
+
+all_files <- list.files()
+all_files
+
+all_files <- all_files[all_files != "Subdata"]
+
+all_gva <- ldply(all_files, read_csv)
+all_gva
+
+#Cambio los nombres de las columnas a unos que se me haran mas facil trabajar
+
+colnames(all_gva) <- c("Incident_ID", "Incident_Date", "State", "City/County",
+                       "Address", "Killed", "Injured","Operations")
+
+#Un vistazo.
+#View(all_gva)
+#str(all_gva)
+#names(all_gva)
+
+#Eliminar unas filas que que estorban.
+
+all_gva <- all_gva %>% 
+  filter(`Incident_ID` != "Incident ID") 
+
+#View(all_gva)
+
+#Convertir esto la culumna que tiene las fehcas a una fecha de verdad, ya que
+#antes de los siguientes pasos es un character.
+
+all_gva$`Incident_Date` <- as.Date(all_gva$`Incident_Date`,
+                                   format = "%B %d,%Y")
+
+
+#Creando las columnas Year y Month
+all_gva <- all_gva %>% 
+  mutate(Year = year(all_gva$`Incident_Date`),
+         Month = month(all_gva$`Incident_Date`))
+
+#Creando la columna Year_Month
+all_gva$Year_Month <- paste(all_gva$Year, all_gva$Month, sep = "-")
+#all_gva$Year_Month <- as.Date(all_gva$Year_Month,
+#                              format = "%Y-%m")        
+
+
+#View(all_gva)
+#str(all_gva)
+#Reorganizando las columnas y quitamos el aC1o 2022 porque es
+#un ano incompleto
+
+all_gva <- all_gva %>%
+  select(Incident_ID, Incident_Date, Year_Month, Year, Month,State,
+         `City/County`, Killed, Injured) %>% 
+  filter(Year != 2022)
+
+#Organizamos alfabeticamente
+
+all_gva <- all_gva[order(all_gva$State),]
+
+#Voy a usar los datos que vienen de la tabla statepop, para lo cual
+#procedo a hacer unas modificaciones que me permitiran trabajar comodo
+
+colnames(statepop) <- c("fips", "abbr", "State", "Pop_2015")
+
+#Hago un leftjoin para obtener la data que necesito
+
+all_gva <-  left_join(all_gva, statepop , by = "State")
+
+
+#Realizar una estadisticas descriptivas initiales
+#Me gusta bastante usar stargazer, creo que tiene un nombre muy poetico.
+#Siempre me imagino que es como mirar a la profundidad de estrellas
+#y ver que hay, peroen lugar de estrella es la data.
+
+stargazer(all_gva, type = "text")
+
+#Apartir de aqui deberian poder hacerse los graficos ya que la data esta limpia
+
+
+
+#View(all_gva)
+
+# Falta agregar unos labels a los datos mas importantes y quitar
+# de los States a Disctric of Columbia porque no todos mis otras fuentes
+# de datos tienen District of Columbia 
+
+all_gva_summarised <- all_gva %>%
+  group_by(Year, State, abbr, fips ) %>% 
+  filter(State != "District of Columbia") %>% 
+  filter(Year %in%  anos_validos) %>% 
+  summarise(Incident_Count = length(Incident_ID)) %>% 
+  ungroup() %>% 
+  mutate(Year = as.character(Year))
+
+
+
+
+# Aqui comienzo a cargar y limpiar mis datos de gun rights
+
+# Cargado
+
+
+gun_rights <- read_excel("Subdata/gun_rights.xlsx", 
+                         sheet = "Personal")
+View(gun_rights)
+
+# Me percato del nombre de las columnas
+
+colnames(gun_rights)
+
+# Me desprendo de columnas  filas que me estorban
+
+gun_rights <- gun_rights %>% 
+  filter(! ...1 %in% c("Mean", "Constitutional weight?", "St. dev."),
+          ...4 != "standardized") %>% 
+  select( ...1, ...2, `Gun Rights`)
+
+# Cambio las columnas a un nombre mas manejable
+
+colnames(gun_rights) <- c("State", "Year", "Gun_Rights")
+
+# Hago vistazos a la data        
+         
+#View(gun_rights)
+
+#str(gun_rights)
+
+# Enmarco la data en los a;os para los que tengo data
+
+gun_rights <- gun_rights %>% 
+  filter(Year %in% anos_validos)
+
+#View(gun_rights)
+
+
+# Cargo los datos de median household income
+
+household_income <- read_excel("Subdata/median_household_income.xls", 
+                                      skip = 2)
+View(household_income)
+
+# Quito columnas y filas que estorban. Ademas, hago la data longer
+
+household_income <- household_income %>% 
+  filter(State != c("1", "United States")) %>% 
+  select(State ,anos_validos) %>% 
+  pivot_longer( cols = anos_validos,
+                names_to = "Year",
+                values_to = "Median_Household_Income")
+
+# Vistazo a la data
+
+# View(household_income)
+
+
+# Cargar y limpiar data de incarceration. El primero modelo que voy a 
+# hacer no va a tomar en cuenta esta variable porque solo conseguimos data
+# para 2014-2016, siendo nuestro timeframe 2014-2019
+
+
+incarceration <- read_csv("Subdata/incarceration.csv")
+View(incarceration)
+
+# Agarro las columnas que me sirven
+
+incarceration <- incarceration %>% 
+  select(jurisdiction, year, prisoner_count) %>% 
+  filter(year %in% anos_validos,
+         jurisdiction != "FEDERAL")
+
+# Cambio los nombres de las colunmnas a unos que me sean utiles
+View(incarceration)
+
+colnames(incarceration) <- c("State", "Year", "Prisoners_Count")
+
+incarceration$State <- stri_trans_totitle(incarceration$State)
+
+
+# Cargar porcentaje de poblacion pobre
+
+poverty <- read_excel("Subdata/poverty.xlsx")
+
+# Year la vuelvo character
+
+poverty$Year <- as.character(poverty$Year)
+
+
+# Cargar Unemplayment
+
+unemployment <- read_excel("Subdata/unemployment.xlsx")
+View(unemployment)
+
+
+# Year la vuelvo character 
+
+unemployment$Year <- as.character(unemployment$Year)
+
+
+# Cargo data de la poblacion de USA
+
+population <- read_csv("Subdata/usa_state_population.csv", 
+                                 skip = 1)
+View(population)
+
+
+
+# Realizo esta limpieza de la tabla population, no se si es de buenas practicas
+# limpiar tanto de un solo golpe
+
+
+
+
+population <- population %>% 
+  separate( "Estimate Date", 
+          into = c("Year", NA),
+          sep = ' ') %>% 
+  filter(id != "0100000US") %>% 
+  select(- id) 
+  
+# Despues de muchas hora, hago lo siguiente para que me funcione el 
+# formato de la fecha, las fechas siempre se me hacen mas dificil
+# de lo esperado.
+
+# Me desprendo de todo lo que no sea el ano, total, solo voy a usar ano
+
+population<- population %>% 
+  separate(Year,
+           into = c(NA, NA, "Year"),
+           sep = "/") %>% 
+  filter( Year %in% anos_validos)
+
+colnames(population) <- c("State", "Year", "Population")
+                      
+  
+View(population)
+
+# Cargo data de Gun Ownership, usamos como proxy rate de suicidios 
+# cometidos con armas de fuego
+
+# Describri que puedes quitar las columnas que no quieres desde que
+# cargas la data
+
+suicide_firearm <- read_excel("Subdata/suicide.xlsx", 
+                      col_types = c("skip", "text", "skip", 
+                                    "text", "skip", "text", "skip", "text", 
+                                    "text", "numeric", "skip", "text"))
+
+# Agrupo la data 
+
+suicide_firearm <-suicide_firearm %>% 
+  group_by(Year , State) %>% 
+  summarise(Deaths = sum (Deaths)) %>% 
+  ungroup() %>% 
+  filter(Year %in% anos_validos)
+
+View(suicide_firearm)
+
+# Cambio el nombre de columnas para hacerlo mas entendible
+
+colnames(suicide_firearm) <- c("Year", "State", "Firearm_Suicide")
+
+# La data de suicidios totales esta en el siguiente archivo. Lo anterior era solo
+# los suicidios cometidos con armas de fuego.
+
+
+total_suicides <- read_csv("Subdata/total_suicides.csv", 
+                           col_types = cols(YEAR = col_character(), 
+                                            RATE = col_skip(), URL = col_skip()))
+View(total_suicides)
+
+# Cambio nombre de columnas
+
+colnames(total_suicides) <- c("Year","abbr", "Suicides")
+
+# Junto tablas para poder cambiar eventualmente la abreviacion de los Estados
+# por el Estado
+
+total_suicides <- left_join(total_suicides, statepop, by = "abbr")
+
+# Me desprendo de columnas que no sirven y le pego la columna de 
+# suicidios por firearm
+
+total_suicides <- total_suicides %>% 
+  select(! c(Pop_2015, fips, abbr)) %>% 
+  select( Year, State, Suicides) %>% 
+  filter( Year != "2020")
+
+
+
+
+total_suicides <- left_join(total_suicides ,suicide_firearm,
+                            by = c("Year", "State")) %>%
+  mutate(firearm_Rate = Firearm_Suicide/Suicides*100) %>% 
+  select(! c("Suicides", "Firearm_Suicide"))
+  
+
+# Vamos a dejar solo los anos que nos importan
+
+total_suicides <- total_suicides %>% 
+  filter(Year %in% anos_validos)
+
+# Comienzo a pegar todas las tablas en una sola gran tabla
+
+consolidado <- left_join(all_gva_summarised,gun_rights,
+                              by = c("Year", "State"))
+
+consolidado <- left_join(consolidado, household_income, 
+                              by = c("Year", "State"))
+
+consolidado <- left_join(consolidado, poverty, 
+                              by = c("Year", "State"))
+
+consolidado <- left_join(consolidado, total_suicides, 
+                              by = c("Year", "State"))
+
+consolidado <- left_join(consolidado, unemployment, 
+                              by = c("Year", "State"))
+
+consolidado <-  left_join(consolidado, population, 
+                               by = c("Year", "State"))
+
+
+
+# Cambios esteticos en Poverty y Unemployment
+
+
+consolidado <- consolidado %>% 
+  mutate(Over_All_Poverty = Over_All_Poverty*100,
+         Unemployment_Rate = Unemployment_Rate*100)
+
+
+
+stargazer(as.data.frame(consolidado), type = "text")
+
+#colnames(consolidado)
+
+
+
+# Aqui le digo al R que mi tabla consolidado es para hacer un modelo de panel
+
+pdata <- pdata.frame(consolidado, index = c("State", "Year"))
+
+# Unas estadisticas descriptivas
+
+
+# Tenemos entendido de que hay diferentes tipos de regresiones panel
+# de acuerdo a las caracteristicas de la data, primero sacarare todos los modelos 
+# que se pueden sacar y luego decidire cual es conveniente
+
+
+# Primero sacaremos el modelo que tiene como principal objetivo evaluar el impacto 
+# que tiene las leyes relacionadas con el porte de armas en los tiroteos masivos
+
+# Aclaro aca que las lineas del codigo de stargazer tienen 2 objetivos: 1) imprimir
+# la data para verla en el R y 2) imprimir la regresion en formato html para su uso
+# en otros lados
+
+# Pooled OLS estimator
+
+grpooling <- plm(pdata$Incident_Count ~ pdata$Gun_Rights + pdata$Median_Household_Income +
+                pdata$Over_All_Poverty + pdata$Unemployment_Rate,
+                data = pdata, model = "pooling")
+
+
+stargazer(grpooling ,  type = "text")
+
+#stargazer(grpooling ,  type = "html", out = "grpooling.html")
+
+# Between estimator
+
+grbetween <- plm(pdata$Incident_Count ~ pdata$Gun_Rights + pdata$Median_Household_Income +
+                 pdata$Over_All_Poverty + pdata$Unemployment_Rate,
+               data = pdata, model = "between")
+
+stargazer(grbetween ,  type = "text")
+
+#stargazer(grbetween ,  type = "html", out = "grbetween.html")
+
+
+# First differences estimator
+
+grfirstdiff <- plm(pdata$Incident_Count ~ pdata$Gun_Rights + pdata$Median_Household_Income +
+                 pdata$Over_All_Poverty + pdata$Unemployment_Rate,
+               data = pdata, model = "fd")
+
+stargazer(grfirstdiff ,  type = "text")
+
+#stargazer(grfirstdiff ,  type = "html", out = "grfirstdiff.html")
+
+# Fixed effects or within estimator
+
+grfixed <- plm(pdata$Incident_Count ~ pdata$Gun_Rights + pdata$Median_Household_Income +
+                   pdata$Over_All_Poverty + pdata$Unemployment_Rate,
+                 data = pdata, model = "within")
+
+
+stargazer(grfixed ,  type = "text")
+
+#stargazer(grfixed ,  type = "html", out = "grfixed.html")
+
+
+# Random effects estimator
+
+grrandom <- plm(pdata$Incident_Count ~ pdata$Gun_Rights + pdata$Median_Household_Income +
+               pdata$Over_All_Poverty + pdata$Unemployment_Rate,
+             data = pdata, model = "random")
+
+
+stargazer(grrandom ,  type = "text")
+
+#stargazer(grrandom ,  type = "html", out = "grrandom.html")
+
+
+
+
+# Realizamos la prueba Hausman que nos sirve para determinar si debemos usar el modelo
+# de fixed effects o el de random effects
+
+
+phtest(grrandom, grfixed)
+
+
+# La prueba nos dice que debemos usar el modelo de efectos random
+
+
+# Ahora, realizaremos el mismo modelo peroo en lugar de tener una metrica del derecho
+# al porte de armas, tendremos una que nos sirve de proxy a cantidad de armas en la poblacion
+# como lo es el porcentaje de suicidios cometidos con armas de fuego
+
+
+
+# Pooled OLS estimator
+
+frpooling <- plm(pdata$Incident_Count ~ pdata$firearm_Rate + pdata$Median_Household_Income +
+                 pdata$Over_All_Poverty + pdata$Unemployment_Rate,
+               data = pdata, model = "pooling")
+
+
+stargazer(frpooling ,  type = "text")
+
+#stargazer(frpooling ,  type = "html", out = "frpooling.html")
+
+# Between estimator
+
+frbetween <- plm(pdata$Incident_Count ~ pdata$firearm_Rate + pdata$Median_Household_Income +
+                 pdata$Over_All_Poverty + pdata$Unemployment_Rate,
+               data = pdata, model = "between")
+
+stargazer(frbetween ,  type = "text")
+
+#stargazer(frbetween ,  type = "html", out = "frbetween.html")
+
+
+# First differences estimator
+
+frfirstdiff <- plm(pdata$Incident_Count ~ pdata$firearm_Rate + pdata$Median_Household_Income +
+                   pdata$Over_All_Poverty + pdata$Unemployment_Rate,
+                 data = pdata, model = "fd")
+
+stargazer(frfirstdiff ,  type = "text")
+
+#stargazer(frfirstdiff ,  type = "html", out = "frfirstdiff.html")
+
+# Fixed effects or within estimator
+
+frfixed <- plm(pdata$Incident_Count ~ pdata$firearm_Rate + pdata$Median_Household_Income +
+               pdata$Over_All_Poverty + pdata$Unemployment_Rate,
+             data = pdata, model = "within")
+
+
+
+stargazer(frfixed ,  type = "text")
+
+#stargazer(frfixed ,  type = "html", out = "frfixed.html")
+
+
+# Random effects estimator
+
+frrandom <- plm(pdata$Incident_Count ~ pdata$firearm_Rate + pdata$Median_Household_Income +
+                pdata$Over_All_Poverty + pdata$Unemployment_Rate,
+              data = pdata, model = "random")
+
+
+stargazer(frrandom ,  type = "text")
+
+#stargazer(random ,  type = "html", out = "frrandom.html")
+
+
+```
+
+
+
+```{r }
+
+stargazer(as.data.frame(consolidado), type = "text")
+```
+
+# Metodología a Utilizar
+
+El planteamiento es realizar un modelo de datos de panel, el cual tendrá como dimensión transversal los estados del país y los años como la dimensión temporal. Esto permitirá entender la relación que hay entre la regulación de las armas y los tiroteos masivos, su interacción regional y la evolución que presenté en el tiempo. Lo cual, hace que esta metodología sea perfecta para responder a las interrogantes iniciales. Cabe mencionar, que principalmente se escogió este tipo de modelo porque es el usado por él trabajo guía. Pero, de los diferentes modelos de datos de panel se usará el de efectos aleatorios, ya que ante el uso de una prueba hausman indica que es la más viable para este trabajo.
+
+
+# Análisis
+
+## Análisis Exploratorio
+
+
+Una revisión inicial de los datos del GVA permite observar algunos hechos interesantes.  El primero de ellos, lo cuál se encuentra claramente descrito en el siguiente gráfico, es que, la cantidad de Tiroteos Masivos ha aumentado en los últimos años, con un picó en el año 2021. 
+```{r }
+
+chart1 <- all_gva %>%
+  #filter(Year %in% anos_validos) %>% 
+  group_by(Year) %>% 
+  summarise(Incident_Count = length(Incident_ID)) %>% 
+  ggplot() +
+  geom_col(aes(Year,Incident_Count, fill = Incident_Count)) +
+  scale_fill_gradient2( low = "white", high = "red" )+
+  theme_clean() +
+  theme(legend.position = "none")+
+  labs(title="Número de Tiroteos Masivos en EE.UU.",
+       subtitle = "Desde 2014 a 2021",
+       x="Año", y = "Número de Incidentes")
+  
+
+chart1
+
+```
+
+
+De igual forma, al sumar el número de incidentes en los distintos Estados, sobre el período establecido, se puede observar que  la mayoría de los tiroteos ocurren en: Ilinois, California, Texas y la región este de los  EE.UU. Por otro lado, la región centro norte parece ser lamenos afectada, así como los casos de los estados de Hawaii y Dakota del Norte que no registraron eventos. Pero vale la pena mencionar que este gráfico no establece una relación entre el número de eventos totales y la población del estado en sí, como una tasa de asesinato por cada 100.000 habitantes.
+
+
+```{r}
+proto_chart2 <- all_gva %>% 
+  group_by(State, fips, abbr) %>% 
+  summarise(Incident_Count = length(Incident_ID)) %>% 
+  ungroup()
+chart2<-  plot_usmap( data = proto_chart2,
+                      values = "Incident_Count",
+                      labels = T) +
+  scale_fill_gradient(low = "white",
+                      high = "red",
+                      name = NULL) +
+  theme_clean()+
+  theme(
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title = element_blank(),
+        axis.line = element_blank())+
+        
+  labs(title="Tiroteos Masivos Divididos por Estado de EE.UU.",
+       subtitle = "Desde 2014 a 2021")
+      
+
+
+
+chart2
+
+```
+
+También es importante la revisión de los datos asociados a las consecuencias físicas de estos eventos, y la relación de la cantidad de eventos y asesinatos. Sin, dejar de tomar en cuenta, aquellos casos donde hay sobrevivientes, y cuántos de ellos sobreviven en estos acontecimientos. Eso lo describen las siguientes dos gráficas. 
+
+
+```{r}
+
+chart3 <- all_gva %>%
+  ggplot(aes(x = Killed)) +
+  geom_bar(fill = "red")+
+  theme_clean()+
+  theme(legend.position = "none")+
+  labs(title="Tiroteos Masivos Distribuidos por Número de Muertos",
+       subtitle = "Entre los años 2014 y 2021 en EE.UU",
+       x="Número de Asesinados", y = "Número de Incidentes")
+
+
+
+chart3
+
+```
+
+Aunque, esta gráfica logra transmitir la información deseada, sobre que la mayoría de los incidentes se acumulan a la izquierda del gráfico y que debe haber algún caso con cerca de 60 muertos; es clave acotar los ejes para poder establecer una mejor imagen del comportamiento de la variable “Número de Asesinados”. Es así, como el siguiente gráfico revela, en mejor proporción y más claridad, que mayormente en los Tiroteos Masivos ocurren  menos de 10 asesinatos.
+
+
+```{r, message=FALSE}
+chart4 <- chart3 +
+  scale_x_continuous(limits = c(-1,11),
+                     breaks = seq(0,10, by =1),
+                     minor_breaks = NULL,
+                     expand = c(0,0))+
+  scale_y_continuous(limits = c(-0,1750),
+                     breaks = seq(0,1750, by =250),
+                     minor_breaks = NULL,
+                     expand = c(0,0))
+  
+chart4
+
+```
+
+La siguiente gráfica, da a entender que la mayoría de los tiroteos masivos (más del 45%), concluyen con 0 asesinatos. Además, de que muy rara vez las consecuencias de estos eventos logran alcanzar tasas de mortalidad altas, y demuestran que en pocas ocasiones, los tiradores alcanzan a ocasionar consecuencias mortales. 
+
+```{r, message=FALSE}
+
+chart5 <- all_gva %>%
+  group_by(Killed) %>% 
+  summarise(Incident_Count = length(Incident_ID)) %>%
+  mutate(Killed_Percentage = Incident_Count / sum(Incident_Count) *100,
+         Killed = ifelse(Killed > 4,
+                         yes = "+4",
+                         no = Killed),
+         Killed = paste(Killed, "Gente Asesinada", sep = " " ),
+         Killed = fct_reorder(Killed, Killed_Percentage)) %>% 
+  ggplot() +
+  geom_col(aes(
+    x =Killed_Percentage,
+    y =Killed,
+    fill = "red")) +
+  theme_clean() +
+  theme(legend.position = "none")+
+  labs(title="Tiroteos Masivos por Número de Personas Asesinadas",
+       subtitle = "Entre los años 2014 y 2021 EE.UU.",
+       x="Porcentaje Total de Tiroteos Masivos", y = "Número de Personas Asesinadas")
+
+
+chart5
+
+```
+
+Revisar el número de eventos y su relación con la cantidad de eventos, llevan a la misma conclusión,  que cerca de 40% de todos los casos de Tiroteos Masivos alcanzan solo 4 heridos, siendo muy pocos aquellos eventos donde las cifras superan estás.
+
+```{r message=FALSE}
+chart6 <- all_gva %>%
+  ggplot(aes(x = Injured)) +
+  geom_bar(fill = "red")+
+  theme_clean()+
+  theme(legend.position = "none")+
+  labs(title="Número de Tiroteos Masivos por Cantidad de Personas Heridas",
+       subtitle = "Entre los años 2014 y 2021 en EE.UU",
+       x="Personas Heridas", y = "Número de Incidentes")
+
+
+chart6
+
+chart7 <- chart6 +
+  scale_x_continuous(limits = c(-1,30),
+                     breaks = seq(0,30, by =1),
+                     minor_breaks = NULL,
+                     expand = c(0,0))+
+  scale_y_continuous(limits = c(-0,1750),
+                     breaks = seq(0,1750, by =250),
+                     minor_breaks = NULL,
+                     expand = c(0,0))
+
+chart7
+chart8.1 <- all_gva %>%
+  group_by(Injured) %>% 
+  summarise(Incident_Count = length(Incident_ID)) %>%
+  mutate(Injured_Percentage = Incident_Count / sum(Incident_Count) *100,
+         Injured = ifelse(Injured > 5,
+                          yes = "+6",
+                          no = Injured),
+         Injured = paste(Injured, "Personas Heridas", sep = " " ), 
+         Injured = fct_reorder(Injured,Injured_Percentage )) %>%
+  group_by(Injured) %>% 
+  summarise(  Injured_Percentage = sum (Injured_Percentage))
+
+chart8.1$Injured <- factor(chart8.1$Injured, 
+                           levels = c('0 Personas Heridas','1 Personas Heridas',
+                                      '2 Personas Heridas','+6 Personas Heridas',
+                                      '5 Personas Heridas', '3 Personas Heridas'
+                                      ,'4 Personas Heridas'))
+  
+ggplot(chart8.1) +
+geom_col( aes( x =  Injured_Percentage, y = Injured ), fill = "red") +
+theme_clean() +
+theme(legend.position = "none")+
+labs(title= "Tiroteos Masivos por Número de Personas Heridas",
+      subtitle = "Entre los años 2014 y 2021 en EE.UU",
+       x="Porcentaje de Tiroteos Masivos Totales", y = "Número de Heridos")
+
+chart8.1
+
+
+```
+
+Un aspecto interesante es que esta gráfica se distribuye como una normal, donde la mayoría de los eventos solo tienen 4 heridos, y hacia las colas tienden a disminuir. Siendo muy raros los eventos con pocos o sin heridos , y aquellos que tienen muchos. Definiendo como pocos o inexistentes heridos como 0, 1 y 2, y aquellos con muchos, los que tienen más de 6.
+
+De nuevo es importante acotar los ejes para adquirir la información de forma más sintetizada y entendible. 
+
+El siguiente gráfico  permite apreciar las diferencias entre los estados que tienen controles más estrictos sobre el porte de armas y aquellos que son más liberales en está área. El grupo marcado con el color rojo (<0), con los que tienen mayores restricciones, como por ejemplo: California, Nueva York, etc. El grupo azul (>0), son aquellos que tienen menores restricciones. Estos valores se basan en un indicador de la característica de la legislación en cuanto al porte de armas, que es un ponderado de distintos temas, tales como: Si está permitido el uso de armas con calibre .50, está permitido tener armas automáticas, si se pueden tener varias armas, etc. Lo cuál, al realizar el análisis, se puede observar que los estados con un menor restricción ha presentado un mayor número de eventos, mientras que aquellos con mayor restricción, tienen menos ocurrencias.
+
+```{r message=FALSE}
+chart9 <- consolidado %>% 
+  mutate(Gun_Rights = ifelse(Gun_Rights > 0,
+                             yes = ">0",
+                             no = "<0")) %>% 
+  group_by(Year, Gun_Rights) %>% 
+  summarise(Incident_Count = sum(Incident_Count)) %>% 
+  ggplot(aes(x = Year, y = Incident_Count, color = Gun_Rights)) +
+  geom_point()+
+  theme_clean()+
+  scale_y_continuous(limits = c(0,250),
+                     breaks = seq(0,250, by =50),
+                     minor_breaks = NULL,
+                     expand = c(0,0))+
+  labs(title="Conteo de Tiroteos Masivos por Año",
+       subtitle = "Divididos por Leyes al Porte de Arma",
+       x="Año", y = "Número de Tiroteos Masivos")
+
+chart9
+```
+
+
+
+## Regresión
+
+En este trabajo se realizaron dos regresiones de datos de panel. Siendo la primera la cual tiene como variable explicativa fundamental, un índice que mide que tan restringido es el uso y porté de de las armas en los diferentes estados (Descrito anteriormente). El segundo,es muy parecido pero en lugar del índice de porte de armas, se usó el porcentaje de suicidios cometidos con armas de fuego, el cual nos sirve de proxy para la proporción de habitantes armados (Descrito anteriormente).
+
+### Regresión por Indice que Mide Restricciones al Porte de Armas
+```{r}
+
+```
+
+
+
+```{r}
+
+stargazer(grrandom ,  type = "text")
+
+```
+
+
+Lo que nos dice esta regresión es que aparentemente hay 2 variables que son lo suficientemente significativas las cuales son niveles de pobreza y desempleo, el resto de las variables no son suficientemente significativas, entre ellas el derecho a porte de armas que se planteó como centro del modelo. 
+Al analizar el coeficiente de las dos variables que son estadísticamente significativas, se puede entender que, en el caso de la primera, tasa de desempleo, ante un aumento de la misma hay una disminución de los tiroteos. Siendo esta conclusión contraintuitiva. 
+También, al analizar el segundo valor del coeficiente de la variable estadísticamente significativa, pobreza, podemos observar que hay una relación positiva. Ante un aumento de la pobreza, hay un aumento de los tiroteos masivos. 
+ 
+
+### Regresión por Proporción de Habitantes Armados
+
+```{r}
+
+stargazer(frrandom ,  type = "text")
+
+```
+
+Esta regresión basicamente muestra que las variables significativas son niveles de pobreza y desempleo, de nuevo. De hecho, habla de una relación negativa entre número de Tiroteos y Desempleo, así como una relación positiva entre pobreza y Tiroteos. Lo que permite tener las mismas conclusiones que con el gráfico anterior. 
+
+
+   
+# Conlusiones
+
+El análisis de las diferentes bases de datos, entre las que destaca una compilación de Tiroteos Masivos desarrollada por el Gun Violence Archive. La cual tenía como objetivo ampliar el entendimiento sobre la relación entre armas, leyes y tiroteos masivos. Así, entendiendo las limitaciones técnicas del análisis realizado y los autores, las conclusiones de la investigación son las siguientes: 
+
+- Aparentemente  no hay evidencia empírica para afirmar que las restricciones al porte de armas influyen en el número de Tiroteos Masivos en los distintos estados. 
+
+- El modelo apunta a que no hay evidencia empírica, para indicar que la proporción de habitantes armados tiene relación alguna con el número de Tiroteos Masivos
+
+- Para los últimos años del periodo 2014-2021 se puede notar un alza en el número de Tiroteos Masivos.
+
+- Cerca de 45% de todos los Tiroteos Masivos no son mortales,  y aproximadamente un 40%, alcanzan a solo 4 personas heridas.
+
+- Los estados de Illinois, Texas, California y la región este de EE.UU., son los sectores geográficos donde se concentran la mayoría de los Tiroteos Masivos. Por otro lado, la región del norte suele no presentar tantos eventos de esta índole. Especialmente en los estados de Dakota del Norte y Hawaii, en los cuales no existen registros de Tiroteos Masivos.
+
+- Las variables que son más significativas estadísticamente son la tasa de pobreza y la tasa de desempleo.
+
+- Ante un aumento de la pobreza se presenta un aumento de los tiroteos masivos, y ante un aumento de la tasa de desempleo, hay disminuciones en los mismos eventos. 
+
+# Consideraciones y Limitaciones
+
+Pesé a que parte de la exploración ha permitido ampliar la visión y conocimiento sobre el tema, este es un modelo que presenta resultados inconclusos y estadísticamente poco significativos. Dando en consecuencia conclusiones que son contraintuitivas a como se prevén interactúan las variables entre sí. Esto debido a que la aplicación del modelo requiere de mayor análisis matemático, para lograr obtener mejores resultados del mismo. 
+	Además, es clave incluir que la información se encuentra muy restringida, debido a lo particular e inusual del evento. Lo que hace que el análisis y el modelo se reduzcan a pocos años, además de la inclusión de varias variables resumidas en proxies. Quizás, con mayor cantidad de datos, que permitirían extender el análisis a períodos más largos, podría efectuarse un modelo que concluyeron en resultados más exactos. Tomando en cuenta, que la definición de tiroteos masivos, en la que se basó el análisis es bastante restrictiva. 
+	Se puede agregar, como consideración, el hecho de que es muy complejo separar los eventos que fueron realmente “tiroteos masivos”, de aquellos que son consecuencia entre pandillas y bandas criminales. Lo cual sesga los resultados, al no poder establecer una clara diferenciación entre unos y los otros. Otro aspecto que no se puede dejar de mencionar, es que la tasa de porté de armas se calcula en base a la proporción de suicidios con armas de fuego; aunque este variable presenta la mayor relación con los datos de la Encuesta General Social, no representa un verdadero registro de las armas en manos de los privados. 
